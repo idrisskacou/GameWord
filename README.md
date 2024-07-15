@@ -1,6 +1,11 @@
 ### Launch Tracker Page with PEAN Stack Backend
+<img src="
+https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/new_1.png">
+
 
 The **Launch Tracker Page** is a web application built using the PEAN stack, which integrates an API backend connected to a PostgreSQL server. This document explains the architecture and components of the application.
+<img src="
+https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/new_4.png">
 
 #### PEAN Stack Overview
 

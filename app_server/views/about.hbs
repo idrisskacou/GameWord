@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History of the Launch</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+ {{> header}}
+    {{!-- Body of the page --}}
+    <h2>Toggle Dark/Light Mode</h2>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }  
+    </script>
+  {{> footer}}
+</body>
+</html>

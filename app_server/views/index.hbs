@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    {{!-- Top menu  --}}
+    {{> header}}
+    {{!-- Body of the page --}}
+    <h2>Toggle Dark/Light Mode</h2>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <h3>Views folder in app_server</h3>
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }  
+    </script>
+    {{> footer}}
+</body>
+</html>

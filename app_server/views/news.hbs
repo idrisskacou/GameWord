@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+<body>
+    {{!-- Top menu  --}}
+    {{> header}}
+    {{!-- Body of the page --}}
+    <h2>Toggle Dark/Light Mode</h2>
+    {{!-- <button onclick="myFunction()" class="ThemeToggle_themeToggle__KbhS8" aria-label="Toggle Dark Mode">Toggle dark mode</button> --}}
+        <button type="button" class="ThemeToggle_themeToggle__KbhS8" aria-label="Toggle Dark Mode" onclick="myFunction()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="block dark:hidden" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="hidden dark:block" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path>
+        </svg>
+    </button>
+    <h3>News Pager</h3>
+    <div class="container">
+      
+    </div>
+    <div class="container">
+        {{#each launchdata}}
+        <div class="box">
+            <div class="body">
+                <ul id="sites">
+                    <li>
+                        <a href="/app_server/controllers/news">
+                            <img src="images/{{this.upcoming_launch_image}}.jpg" alt="Img">
+                        </a>
+                        <h2>
+                            <a href="/news">{{this.upcoming_launch_title}}</a>
+                        </h2>
+                        <p><strong>Date:</strong> {{this.upcoming_launch_date}}</p>
+                        <p><strong>Time:</strong> {{this.upcoming_launch_time}}</p>
+                        <p><strong>Base:</strong> {{this.upcoming_launch_base}}</p>
+                        <p><strong>Location:</strong> {{this.upcoming_launch_location}}</p>
+                        <p><strong>Rocket:</strong> {{this.upcoming_launch_rocket}}</p>
+                        <p><strong>Company:</strong> {{this.upcoming_launch_company}}</p>
+                        <p>{{this.upcoming_launch_description}}</p>
+                        <p><a href="{{this.url}}" target="_blank">More info</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }  
+    </script>
+
+    {{!-- Footer menu  --}}
+    {{> footer}}
+</body>
+</html>

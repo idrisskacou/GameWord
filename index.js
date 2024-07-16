@@ -10,9 +10,12 @@ require("./app_server/controllers/db"); //
 
 // define path of the router of the page
 var indexRouter = require("./app_server/routes/index");
-var usersRouter = require("./app_server/routes/users");
+// var usersRouter = require("./app_server/routes/users");
 var newsRouter = require("./app_server/routes/news");
 var apiRouter = require("./app_api/routes/index");
+var contactRouter = require("./app_server/routes/contact");
+var aboutRouter = require("./app_server/routes/about");
+var loginRouter = require("./app_server/routes/login");
 
 // debugging
 // Path for views partials
@@ -39,8 +42,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define bind url + router
 app.get("/", indexRouter);
-app.get("/users", usersRouter);
+// app.get("/users", usersRouter);
 app.get("/news", newsRouter);
+app.get("/contact", contactRouter);
+app.get("/about", aboutRouter);
+app.get("/login", loginRouter);
 // app.get('/api', apiRouter); // Request for API to the api router
 
 // Error handler middleware

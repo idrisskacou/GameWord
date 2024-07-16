@@ -1,17 +1,74 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
     <title>Launch Login</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
-  <body>
-    {{! Body of the page }}
-    <h2>Toggle Dark/Light Mode</h2>
-    <button onclick="myFunction()">Toggle dark mode</button>
-    <h1> Login Page</h1>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  {{!-- Header is subject to change  --}}
+  {{!-- {{> header}} --}}
+    <div class="login-container">
+        <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <h1>Login Page</h1>
+        <div id="loginbox" class="mainbox">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                </div>
+                <div class="panel-body">
+                    <!-- Login Form -->
+                    <form action="" method="POST" class="form-horizontal">
+                        <!-- Placeholder for messages: error, alert etc. -->
+                        <div class="form-group">
+                            <div class="col-xs-15">
+                                <div>
+                                    {{!--
+                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        Invalid username and password.
+                                    </div>
+                                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                        You have been logged out.
+                                    </div>
+                                    --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Username -->
+                        <div class="input-group" style="margin-bottom: 25px;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" name="username" placeholder="Username" class="form-control">
+                        </div>
+
+                        <!-- Password -->
+                        <div class="input-group" style="margin-bottom: 25px;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" name="password" placeholder="Password" class="form-control">
+                        </div>
+
+                        <!-- Login/Submit Button -->
+                        <div class="form-group" style="margin-top: 10px;">
+                            <div class="col-sm-12 controls">
+                                <button type="submit" class="btn btn-success">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-      function myFunction() { var element = document.body;
-      element.classList.toggle("dark-mode"); }
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            document.querySelector('.container').classList.toggle("dark-mode");
+        }
     </script>
-  </body>
+    {{> footer}}
+</body>
 </html>

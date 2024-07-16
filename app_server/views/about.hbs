@@ -4,18 +4,47 @@
     <meta charset="UTF-8">
     <title>History of the Launch</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
  {{> header}}
     {{!-- Body of the page --}}
-    <h2>Toggle Dark/Light Mode</h2>
-    <button onclick="myFunction()">Toggle dark mode</button>
-    <script>
-        function myFunction() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-        }  
-    </script>
+     <!-- Header Section -->
+    <div class="about-header">
+        <h1>About Us</h1>
+    </div>
+
+    <!-- Main Container -->
+    <div class="about-container">
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>Our Company</h2>
+            <p>The Launch Tracker Page is a web application built using the PEAN stack, which integrates an API backend connected to a PostgreSQL server. This document explains the architecture and components of the application.</p>
+            <p>Founded in Jul 2024, we have consistently focused on innovation and quality. Our mission is to track Launch.</p>
+        </div>
+        <!-- Career Section -->
+        <div class="career-section">
+            <h2>What It's Like to Be a Computer Scientist with a BS Degree</h2>
+            <p>Pursuing a career in computer science with a Bachelor of Science (BS) degree opens up a world of opportunities. As a computer scientist, you will be at the forefront of technology, working on exciting projects and solving complex problems.</p>
+            <p>With a BS degree in computer science, you can expect to:</p>
+            <ul>
+                <li><strong>Work on Cutting-Edge Technologies:</strong> Be involved in developing and implementing the latest software, hardware, and systems.</li>
+                <li><strong>Engage in Problem-Solving:</strong> Use your analytical skills to tackle challenging technical issues and find innovative solutions.</li>
+                <li><strong>Collaborate with Talented Teams:</strong> Work alongside other skilled professionals in a dynamic and collaborative environment.</li>
+                <li><strong>Continuous Learning:</strong> Stay updated with the ever-evolving field of technology through continuous learning and professional development.</li>
+                <li><strong>Enjoy Diverse Career Opportunities:</strong> Pursue various career paths, including software development, data science, cybersecurity, artificial intelligence, and more.</li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="about-section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or inquiries, please don't hesitate to contact us. We are here to help!</p>
+            <p>Email: contact@company.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </div>
   {{> footer}}
 </body>
 </html>

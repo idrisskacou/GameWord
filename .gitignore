@@ -33,6 +33,8 @@ bower_components
 build/Release
 
 # Dependency directories
+server.cert
+server.key
 node_modules/
 jspm_packages/
 
@@ -56,6 +58,8 @@ typings/
 
 # dotenv environment variables file
 .env
+
+
 
 # next.js build output
 .next

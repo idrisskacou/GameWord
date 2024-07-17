@@ -1,8 +1,10 @@
 var express = require("express"); // import npm i express and define express
+// const https = require('https');
 var bodyParser = require("body-parser"); // import npm i body-parser and define bodyParser
 var pg = require("pg"); // import npm i pg and define pg
 var cookieParser = require("cookie-parser"); // import npm i cookieParser and define cookieParser
 var path = require("path"); // import npm i path and define path
+const fs = require('fs');
 var hbs = require("hbs"); // import npm i hbs and define hbs
 const app = express(); // Express
 const port = 3000; // Port define
@@ -21,6 +23,7 @@ var loginRouter = require("./app_server/routes/login");
 // Path for views partials
 const partialsPath = path.join(__dirname, "views/partials"); // debugging
 console.log("Partials path:", partialsPath); // console log to debugging
+console.log(process.env.NODE_ENV);
 
 const partialsAppsserver = path.join(__dirname, "app_server", "views"); // debugging
 console.log("App_server path:", partialsAppsserver); // console log to debugging

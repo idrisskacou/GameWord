@@ -206,7 +206,7 @@ body {
 }
 .footer {
   background-color: #d4d7db;
-  width: 100%;
+  width: auto;
   padding: 20px;
   font-size: 1rem;
   text-align: center;
@@ -260,4 +260,37 @@ p {
   margin-top: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Chart css file  */
+.chart {
+	max-width: auto;
+    height: auto;
+    padding: auto;
+    margin: 0 auto;
+}
+.chart_format {
+    font-family: sans-serif;
+    min-height: 1%;
+    max-height: 10%;
+    color: #555;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mychart{
+	max-width: 500px ;
+	height: 450px ;
+	padding: 0;
+	margin: 0px auto;
+}
+.chart .chart_types{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.chart .chart_types button{
+	padding: 10px 25px;
 }

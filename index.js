@@ -6,9 +6,13 @@ var cookieParser = require("cookie-parser"); // import npm i cookieParser and de
 var path = require("path"); // import npm i path and define path
 const fs = require('fs');
 var hbs = require("hbs"); // import npm i hbs and define hbs
+var csrf = require('csurf');
 const app = express(); // Express
 const port = 3000; // Port define
 require("./app_server/controllers/db"); //
+var secret = tokens.secretSync() //Create a new CSRF token attached
+var token = tokens.create(secret)
+
 
 // define path of the router of the page
 var indexRouter = require("./app_server/routes/index");
@@ -28,6 +32,9 @@ console.log(process.env.NODE_ENV);
 const partialsAppsserver = path.join(__dirname, "app_server", "views"); // debugging
 console.log("App_server path:", partialsAppsserver); // console log to debugging
 
+
+// security 
+const csrfProctection = csrf({});
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
 hbs.registerPartials(path.join(__dirname, "app_server", "views/partials"));

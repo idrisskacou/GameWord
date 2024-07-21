@@ -10,14 +10,69 @@
     {{!-- Top menu  --}}
     {{> header}}
     {{!-- Body of the page --}}
-    <h2>Toggle Dark/Light Mode</h2>
+    <h2>Welcome to Launch Tracker Backend</h2>
     <button class="toggle-button" onclick="myFunction()">Toggle dark mode</button>
-    <h3>Views folder in app_server</h3>
+    {{!-- <h3>Views folder in app_server</h3> --}}
+    <div class="chart">
+        <div class="chart_format">
+            <div class="chart_types">
+            <button onclick="setChartType('bar')">Bars</button>
+            <button onclick="setChartType('line')">Line</button>
+            <button onclick="setChartType('doughnut')">Doughnut</button>
+            <button onclick="setChartType('polarArea')">PolarArea</button>
+            <button onclick="setChartType('radar')">Radar</button>
+        </div>
+        <canvas id="mychart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    
     <script>
+        let mychart;
+        let datainput;
+         const ctx = document.getElementById('mychart').getContext('2d');
+         function setChartType(chartType) {
+            if (myChart) {
+                myChart.destroy();
+            }
+            createChart(chartType);
+        }
+
+        function setchartinput(datainput){
+            if(datainput) {
+                inputlabels = ['HTLM', 'CSS', 'JavaScript', 'Git', 'Node', 'PostgreSQL', 'RESTful APIs', 'JWT auth'];
+            }
+        }
+
+        createChart('polarArea'); // Initial chart type
+
+        function createChart(chartType) {
+            myChart = new Chart(ctx, {
+                type: chartType,
+                data: {
+                    labels: ['HTLM', 'CSS', 'JavaScript', 'Git', 'Node', 'PostgreSQL', 'RESTful APIs', 'JWT auth'],
+                    datasets: [{
+                        label: '# Completion process',
+                        data: [50, 35, 26, 15, 15, 48, 35, 0],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    maintainAspectRatio:true
+                }
+            });
+        }
+        
         function myFunction() {
             var element = document.body;
             element.classList.toggle("dark-mode");
-        }  
+        }   
     </script>
     {{> footer}}
 </body>

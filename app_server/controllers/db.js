@@ -6,13 +6,13 @@ require("dotenv").config();
 const app = express();
 
 // Database connection setup
-const db = new pg.Client({
+const dbConfig = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-});
+};
 
 // Query to fetch launch data
 const fetchLaunchDataQuery = `
@@ -33,15 +33,21 @@ const fetchLaunchDataQuery = `
 
 // Function to fetch data from the database
 const fetchLaunchData = async () => {
+  const connection = new pg.Client(dbConfig); // Define the connection and pass the DB Credential 
   try {
-    await db.connect();
-    const res = await db.query(fetchLaunchDataQuery);
+    await connection.connect(); // Await for the connection 
+    const res = await connection.query(fetchLaunchDataQuery);
     return res.rows;
   } catch (err) {
     console.error("Error executing query", err.stack);
     throw err; // Throw the error to propagate it
   } finally {
-    db.end(); // Close the database connection after fetching
+    // await db.end(); // Close the database connection after fetching
+    try {
+      await connection.end(); // Close the database connection after fetching
+    } catch (closeErr) {
+      console.error("Error closing the database connection", closeErr.stack);
+    }
   }
 };
 
@@ -50,6 +56,7 @@ app.get("/news", async (req, res) => {
   try {
     const launchdata = await fetchLaunchData(); // Fetch launch data
     res.render("news", { title: "GAME WORD NEWS", launchdata });
+    
   } catch (err) {
     console.error("Error fetching launch data", err.stack);
     res.status(500).json({ error: "Error fetching launch data" });

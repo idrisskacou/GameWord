@@ -10,8 +10,9 @@ var csrf = require('csurf');
 const app = express(); // Express
 const port = 3000; // Port define
 require("./app_server/controllers/db"); //
-var secret = tokens.secretSync() //Create a new CSRF token attached
-var token = tokens.create(secret)
+// var secret = tokens.secretSync(); //Create a new CSRF token attached
+// var token = tokens.create(secret);
+// var axios = require("axios");
 
 
 // define path of the router of the page
@@ -34,7 +35,8 @@ console.log("App_server path:", partialsAppsserver); // console log to debugging
 
 
 // security 
-const csrfProctection = csrf({});
+// const csrfProctection = csrf({});
+
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
 hbs.registerPartials(path.join(__dirname, "app_server", "views/partials"));

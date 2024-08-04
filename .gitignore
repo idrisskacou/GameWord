@@ -70,4 +70,7 @@ typings/
 !.vscode/extensions.json 
 *.code-workspace
 .DS_Store
-
+# ignore python query 
+.ipynb
+.py
+.txt

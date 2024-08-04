@@ -31,7 +31,15 @@ const fetchLaunchDataQuery = `
     FROM launch;
 `;
 
-// Function to fetch data from the database
+
+
+const weatherFetchLaunchDataQuery = `
+  SELECT * FROM public.launch_weather
+  ORDER BY id ASC
+  LIMIT 5;
+`;
+
+// Function to fetch launch data from the database
 const fetchLaunchData = async () => {
   const connection = new pg.Client(dbConfig); // Define the connection and pass the DB Credential 
   try {
@@ -50,6 +58,26 @@ const fetchLaunchData = async () => {
     }
   }
 };
+
+// Function to fetch weather data from the database 
+const fetchWeatherData = async () => {
+  const connection = new pg.Client(dbConfig);  // Define the connection and pass the DB Credential 
+  try {
+    await connection.connect(); // Await for the connection
+    const res = await connection.query(weatherFetchLaunchDataQuery); // define res with set define query result
+    return res.rows; // return fetching data
+  } catch (err) {
+    console.error("Error executing query", err.stack);
+    throw err; // Throw the error to propagate it
+  } finally {
+    try {
+      await connection.end(); // Close the database connection after fetching
+    } catch (closeErr) {
+      console.error("Error closing the database connection", closeErr.stack);
+    }
+  }
+};
+
 
 // Example: Express route to render 'news' view with fetched launch data
 app.get("/news", async (req, res) => {

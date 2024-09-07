@@ -139,4 +139,8 @@ import { LaunchService } from './launch.service';
 </div>
 ```
 
+<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
+=======
+<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
+>>>>>>> origin/main

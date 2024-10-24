@@ -141,5 +141,9 @@ import { LaunchService } from './launch.service';
   <p><a [href]="launch.url" target="_blank">More info</a></p>
 </div>
 ```
+<<<<<<< HEAD
 
 <img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
+=======
+<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
+>>>>>>> origin/main

@@ -1,0 +1,45 @@
+.launch-cards-container {
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line if they don't fit */
+    gap: 16px; /* Space between cards */
+    justify-content: space-between; /* Distributes space evenly between cards */
+    
+  }
+  
+  mat-card {
+    flex: 1 1 calc(33% - 16px); /* Three cards per row, subtracting gap space */
+    box-sizing: border-box; /* Ensures padding/border don't affect the card's width */
+    border-radius: 30px;
+    gap: 20px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+  }
+  .mat-card:hover {
+    border: 3px solid rgb(229, 124, 27);
+    /* transform: scale(1.00);
+    border: #2cf229f0 0.2em solid;
+    border-radius: 2.5rem 0 2.5rem 0; */
+  }
+  /* Button styles */
+button.mat-button {
+  color: #007BFF;
+}
+  /* .mat-card:active {
+
+    transform: scale(0.80) rotateY(1.7deg);
+  } */
+  @media (max-width: 768px) {
+    mat-card {
+      flex: 1 1 calc(50% - 16px); /* Two cards per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    mat-card {
+      flex: 1 1 100%; /* Full-width cards on very small screens */
+    }
+  }
+  
+  

@@ -1,0 +1,19 @@
+<div class="container">
+    <header>
+      <h1>Launch Details</h1>
+    </header>
+  
+    <main>
+        <!-- Display launch details if available -->
+      <div *ngIf="launch" class="launch-details">
+        <!-- <p>ID: {{ launch.id }}</p> -->
+        <h1>Title: {{ launch.upcoming_launch_title }}</h1>
+        <p>Date: {{ launch.upcoming_launch_date | date: 'MM/dd/YYYY' }}</p>
+        <p>Rocket: {{ launch.upcoming_launch_rocket }}</p>
+        <p>Company: {{ launch.upcoming_launch_company }}</p>
+        <p>Description: {{ launch.upcoming_launch_description }}</p>
+      </div>
+      <p *ngIf="!launch" class="no-launch-message">No launch found with the specified ID.</p>
+    </main>
+</div>
+  

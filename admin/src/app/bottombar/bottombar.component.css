@@ -1,0 +1,37 @@
+body { 
+    margin: 0; 
+    font-family: 'Arial', sans-serif; 
+} 
+
+.container { 
+    display: flex; 
+    flex-direction: column; 
+    /* min-height: 10vh;  */
+    min-height: 5vh;
+} 
+
+.bottom-nav { 
+    background-color: #060706; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+} 
+
+.bottom-nav a { 
+    color: #fff; 
+    text-align: center; 
+    padding: 14px 16px; 
+    text-decoration: none; 
+    font-size: 17px; 
+} 
+
+.bottom-nav a:hover { 
+    background-color: #2a93d5; 
+} 
+
+.bottom-nav a .icon { 
+    margin-right: 8px; 
+} 

@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Launch Login</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
   {{!-- Header is subject to change  --}}
   {{!-- {{> header}} --}}
-    <div class="login-container">
-        <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <div class="login-card">
+        <div class="login-container">
         <h1>Login Page</h1>
         <div id="loginbox" class="mainbox">
             <div class="panel panel-info">
@@ -23,23 +19,7 @@
                 </div>
                 <div class="panel-body">
                     <!-- Login Form -->
-                    <form action="" method="POST" class="form-horizontal">
-                        <!-- Placeholder for messages: error, alert etc. -->
-                        <div class="form-group">
-                            <div class="col-xs-15">
-                                <div>
-                                    {{!--
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        Invalid username and password.
-                                    </div>
-                                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                                        You have been logged out.
-                                    </div>
-                                    --}}
-                                </div>
-                            </div>
-                        </div>
-
+                    <form action="/login" method="POST" class="form-horizontal">
                         <!-- Username -->
                         <div class="input-group" style="margin-bottom: 25px;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -63,13 +43,8 @@
             </div>
         </div>
     </div>
+  </div>
 
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-            document.querySelector('.container').classList.toggle("dark-mode");
-        }
-    </script>
-    {{> footer}}
+    {{!-- {{> footer}} --}}
 </body>
 </html>

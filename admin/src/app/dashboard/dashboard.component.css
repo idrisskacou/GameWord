@@ -1,0 +1,123 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  
+}
+
+.chartBox {
+  /* the chart css  */
+  position: relative;
+  max-width: fit-content;
+  /* height: 90%; */
+  align-items: center;
+  width: calc(((50% - (1px * 0.5)) * 2) + (1 * 1px));
+  height: calc((350px * 1) + (0 * 1px));
+  border: solid 3px rgba(75, 192, 192, 1);
+  background: white;
+  display: flex;
+  justify-content: center;
+
+}
+
+.gaugebox{
+  padding: 0px;
+  /* background: white; */
+  border-radius: 20px;
+  align-items: baseline;
+  text-align: center;
+  display: flex;
+}
+.piebox{
+  /* the pie css */
+  /* size-adjust: 10px; */
+  width: 300px;
+  padding: 0px;
+  border-radius: 20px;
+
+}
+
+.test {
+  padding: 10px auto;
+  flex-grow: 2;
+  flex-shrink: 2;
+  gap: 10px 20px;
+  /* flex-basis: auto; */
+  margin: auto;
+  align-content: space-evenly;
+}
+
+
+
+/* CSS for the table */
+.table-container {
+  margin: 40px auto;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  /* border-collapse: collapse; */
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+th {
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+  color: #333;
+}
+
+td:first-child {
+  font-weight: bold;
+  color: #007BFF;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Add responsive design */
+@media screen and (max-width: 768px) {
+  .table-container {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+}

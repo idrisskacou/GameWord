@@ -1,0 +1,19 @@
+/* Wrapper for the map component */
+
+
+/* Custom styles for the map container */
+google-map {
+    height: 400px;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.body{
+    padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    text-shadow: 10px;
+    align-items: center;
+    color: chocolate;
+} 

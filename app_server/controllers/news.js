@@ -5,7 +5,6 @@ var axios = require("axios");
 
 const news = async (req, res) => {
   try {
-    // const launchdata = await fetchLaunchData(); // Fetch launch data
     const launchdata = await fetchLaunchData(); // Fetch launch data
     res.render("news", { title: "LAUNCH API", launchdata });
     console.log(launchdata[1]);

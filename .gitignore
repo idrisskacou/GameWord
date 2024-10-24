@@ -74,3 +74,4 @@ typings/
 .ipynb
 .py
 .txt
+Python/*

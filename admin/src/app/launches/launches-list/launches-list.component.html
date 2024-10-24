@@ -1,0 +1,27 @@
+<h1 class="title">Launches</h1>
+<!-- Wrapper to hold the cards in a row --> 
+<div class="launch-cards-container">
+  <!-- Dynamic cards from launches array -->
+  <!-- <mat-card *ngFor="let launch of launches" class="mat-card" (click)="goToLaunchDetails(launch.id)"> -->
+  <mat-card *ngFor="let launch of launches" class="mat-card" (click)="goToLaunchDetails(launch.id)">
+
+    <mat-card-header>
+      <mat-card-title>{{ launch.upcoming_launch_title }}</mat-card-title>
+      <mat-card-subtitle>{{ launch.upcoming_launch_date | date: 'mediumDate' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ launch.upcoming_launch_company }}</p>
+      <p>{{ launch.upcoming_launch_location }}</p>
+      
+      <!-- Conditionally show the details if isExpanded is true -->
+      <div *ngIf="launch.isExpanded">
+        <p>{{ launch.upcoming_launch_details }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="toggleDetails(launch)">
+        {{ launch.isExpanded ? 'Hide Details' : 'Details' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

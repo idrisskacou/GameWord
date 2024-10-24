@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #0e0909;
+  color: #cdc1c1;
   margin: 0;
   /* padding: 20px; */
   text-align: center;
@@ -148,9 +148,10 @@ body {
   max-width: 400px;
   margin: 100px auto;
   padding: 20px;
-  background-color: #fff;
+  size: 10%;
+  /* background-color: #fff; */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .contact-form {
@@ -293,4 +294,157 @@ p {
 }
 .chart .chart_types button{
 	padding: 10px 25px;
+}
+
+/* Chart css file */
+.chart {
+  width: 100%;
+  height: 100%;
+  padding: auto;
+  margin: 0 auto;
+}
+
+.chart_format {
+  font-family: sans-serif;
+  color: #555;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chart_types {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.chart_types button {
+  padding: 8px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Dashboard grid */
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-title {
+  font-size: 2em;
+}
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(350px, auto);
+  gap: 15px;
+}
+
+.grid-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.more-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  display: none;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.more-button:hover + .menu,
+.menu:hover {
+  display: block;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard-card-content > div {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Login css  */
+.login-card {
+  height: 100%; /* Ensure that the body takes the full height of the viewport */
+  margin: 10% auto;
+  padding: 20px;
+  justify-content: center;
+  display: flex; 
+  align-content: center;
+  align-items: baseline;
+  width: 500px;
+  /* height: 254px; */
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;
+ }
+
+ .btn {
+  background-color: #e0e0e0;
+  border-radius: 50px;
+  box-shadow: inset 4px 4px 10px #bcbcbc, inset -4px -4px 10px #ffffff;
+  color: #4d4d4d;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 15px 40px;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid rgb(206, 206, 206);
+ }
+
+ .btn:active {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+ }
+
+ .btn:hover {
+  box-shadow: inset 2px 2px 5px #bcbcbc, inset -2px -2px 5px #ffffff, 2px 2px 5px #bcbcbc, -2px -2px 5px #ffffff;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: inset 2px 2px 5px #bcbcbc, inset -2px -2px 5px #ffffff, 2px 2px 5px #bcbcbc, -2px -2px 5px #ffffff;
+}
+.input-group {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
 }

@@ -1,0 +1,41 @@
+<div class="body">
+  <h1>Contact Me</h1>
+</div>
+<form (ngSubmit)="onSubmit()" class="form">
+
+    <p class="form-heading">Get In Touch</p>
+
+      <div class="form-field">
+        <input required="" placeholder="Name" class="input-field" type="text" />
+      </div>
+
+      <div class="form-field">
+        <input
+          required=""
+          placeholder="Email"
+          class="input-field"
+          type="email"
+        />
+      </div>
+
+      <div class="form-field">
+        <input
+          required=""
+          placeholder="Subject"
+          class="input-field"
+          type="text"
+        />
+      </div>
+
+      <div class="form-field">
+        <textarea
+          required=""
+          placeholder="Message"
+          cols="30"
+          rows="3"
+          class="input-field"
+        ></textarea>
+      </div>
+
+    <button class="btn btn-primary" type="submit" >Submit</button>
+</form>

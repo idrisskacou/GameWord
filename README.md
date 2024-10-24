@@ -17,6 +17,9 @@ The PEAN stack is a collection of technologies used to develop full-stack web ap
 - **A - Angular**: A platform and framework for building single-page client applications using HTML and TypeScript.
 - **N - Node**: A JavaScript runtime built on Chrome's V8 JavaScript engine that allows you to run JavaScript on the server side.
 
+### Diagram
+
+
 #### Application Components
 
 1. **Frontend (Angular)**:

@@ -1,6 +1,7 @@
 const express = require("express");
 const pg = require("pg");
 var fs = require("fs");
+const { env } = require("process");
 require("dotenv").config();
 
 const app = express();
@@ -30,8 +31,21 @@ const fetchLaunchDataQuery = `
         url
     FROM launch;
 `;
+// login fetching username and password
+const login = (request, response) => {
+  const { USERNAME, PASSWORD } = request.body;
+  dbConfig.query('SELECT * FROM login WHERE (username, password) VALUE ($1, $2)', [USERNAME, PASSWORD], (error, results) => {
+    if (error) {
+      throw error
+  }
+  response.status(201).send("Login Insert success");
+  })
+}
+const noSQLdata = {
+   USERNAME : env.USERNAME,
+   PASSWORD : env.PASSWORD,
 
-
+}
 
 const weatherFetchLaunchDataQuery = `
   SELECT * FROM public.launch_weather
@@ -105,4 +119,7 @@ process.on("uncaughtException", (err) => {
   process.exit(1); // Exit with non-zero code indicating failure
 });
 
-module.exports = { fetchLaunchData }; // Export fetchLaunchData function
+module.exports = { 
+  fetchLaunchData,
+  noSQLdata,
+ }; // Export fetchLaunchData function

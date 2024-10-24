@@ -18,7 +18,7 @@ The PEAN stack is a collection of technologies used to develop full-stack web ap
 - **N - Node**: A JavaScript runtime built on Chrome's V8 JavaScript engine that allows you to run JavaScript on the server side.
 
 ### Diagram
-
+<img src= "https://github.com/idrisskacou/GameWord/blob/775873469afb233956867ba5d0af393629d620f1/public/images/Launch%20Website%20Diagram.png">
 
 #### Application Components
 
@@ -142,4 +142,4 @@ import { LaunchService } from './launch.service';
 </div>
 ```
 
-<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png"
+<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">

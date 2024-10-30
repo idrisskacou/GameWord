@@ -1,27 +1,38 @@
-# Admin
+### Launch Tracker Page with PEAN Stack Backend
+### Diagram
+<img src= "https://github.com/idrisskacou/GameWord/blob/775873469afb233956867ba5d0af393629d620f1/public/images/Launch%20Website%20Diagram.png">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
-## Development server
+The **Launch Tracker Page** is a web application built using the PEAN stack, which integrates an API backend connected to a PostgreSQL server. This document explains the architecture and components of the application.
+<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/seach-on-launch-tracker.png">
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/new_4.png">
 
-## Code scaffolding
+#### PEAN Stack Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The PEAN stack is a collection of technologies used to develop full-stack web applications. It consists of:
+    P-- ProgreSQL.
+    E-- Express.
+    A-- Angular.
+    N-- Node.
+- **P - PostgreSQL**: A powerful, open-source object-relational database system that stores and manages data.
+- **E - Express**: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- **A - Angular**: A platform and framework for building single-page client applications using HTML and TypeScript.
+- **N - Node**: A JavaScript runtime built on Chrome's V8 JavaScript engine that allows you to run JavaScript on the server side.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Application Components
 
-## Running unit tests
+1. **Frontend (Angular)**:
+   - The frontend of the application is built using Angular, which provides a dynamic and interactive user interface.
+   - It communicates with the backend API to fetch and display data related to launch events.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Backend (Node and Express)**:
+   - The backend is developed using Node.js and Express.
+   - Express is used to create RESTful API endpoints that handle requests from the frontend.
+   - The backend processes these requests, interacts with the PostgreSQL database, and sends the appropriate responses back to the frontend.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. **Database (PostgreSQL)**:
+   - PostgreSQL is used to store data about launch events.
+   - The database schema includes tables and fields to store details such as launch ID, image, title, date, time, base, location, rocket, description, company, and a URL for more information.
+   - SQL queries are used to interact with the database, allowing for the retrieval, insertion, updating, and deletion of data.

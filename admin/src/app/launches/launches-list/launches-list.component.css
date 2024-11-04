@@ -42,4 +42,6 @@ button.mat-button {
     }
   }
   
-  
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

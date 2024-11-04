@@ -95,7 +95,3 @@ body {
     align-items: center;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

@@ -231,7 +231,3 @@ h1 {
 .send-icon:hover {
   color: dimgray; /* Change color on hover */
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

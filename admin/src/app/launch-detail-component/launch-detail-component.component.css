@@ -59,8 +59,3 @@ h1 {
     margin: 20px 0; /* Space above and below */
     text-align: center; /* Center align the message */
 }
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

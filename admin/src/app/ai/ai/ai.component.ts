@@ -15,7 +15,6 @@ import { AiService } from '../ai.service';
 // interface Message {
 //   author: 'user' | 'bot';
 //   content: string;
-//   agent : 'Agent' | 'bot'
 // }
 
 
@@ -61,18 +60,17 @@ export class AiComponent implements OnInit, OnChanges, OnDestroy {
 
   // Lifecycle hook for component initialization
   ngOnInit(): void {
-    this.logger.log(`AI Trigger # ${this.id} onInit`);
-    this.ai()
+    this.logger.log(`Spy #${this.id} onInit`);
   }
 
   // Lifecycle hook for changes in data-bound properties
   ngOnChanges(changes: SimpleChanges): void {
-    this.logger.log(`AI Change #${this.id} onChanges`);
+    this.logger.log(`Spy #${this.id} onChanges`);
   }
 
   // Lifecycle hook for component destruction
   ngOnDestroy(): void {
-    this.logger.log(`AI Destroy #${this.id} onDestroy`);
+    this.logger.log(`Spy #${this.id} onDestroy`);
   }
 
   

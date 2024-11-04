@@ -17,7 +17,3 @@ google-map {
     align-items: center;
     color: chocolate;
 } 
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

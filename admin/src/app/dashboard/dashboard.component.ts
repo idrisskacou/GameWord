@@ -1,4 +1,4 @@
-import { Component, inject, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { NavigationStart } from '@angular/router';
@@ -11,11 +11,8 @@ import { Launches } from '../models/launches';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit, OnDestroy, OnChanges{
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
-  }
-  // private breakpointObserver = inject(BreakpointObserver);
+export class DashboardComponent {
+  private breakpointObserver = inject(BreakpointObserver);
    // Define value
    userAgent: string = '';
   //  countdownTime: number = 60; // Countdown time in seconds
@@ -39,32 +36,33 @@ export class DashboardComponent implements OnInit, OnDestroy, OnChanges{
    lauchDataSource: Launches[] = []
    // dataSource = ELEMENT_DATA;
    dataSource = this.lauchDataSource;
+   
+ 
+ 
 
-  //  // Method that updates the weather string
-  //  updateWeather(newWeather: string): void {
-  //    this.weather = newWeather;
-  //    // Update the DOM element with the new weather string using document.getElementById()
-  //    const weatherchart = document.getElementById("weatherchart");
-  //    const weatherElement = document.getElementById('weatherchart');
-  //    if (weatherchart) {
-  //      weatherchart.innerText = this.weather; // Update the text inside the element
-  //    } else {
-  //      console.error('Weather display element not found');
-  //    }
-  //  }
+   // Method that updates the weather string
+   updateWeather(newWeather: string): void {
+     this.weather = newWeather;
+     // Update the DOM element with the new weather string using document.getElementById()
+     const weatherchart = document.getElementById("weatherchart");
+     const weatherElement = document.getElementById('weatherchart');
+     if (weatherchart) {
+       weatherchart.innerText = this.weather; // Update the text inside the element
+     } else {
+       console.error('Weather display element not found');
+     }
+   }
 
    ngOnInit(): void{
-    //  this.updateWeather('72 Los Angeles, CA');
+     this.updateWeather('72 Los Angeles, CA');
      const chartElement = document.getElementById('canvas');
      const pieElement = document.getElementById('piechart');
      const gaugeChart = document.getElementById('gaugeChart');
-    //  const weatherchart = document.getElementById("weatherchart")
-    //  const countdownElement = document.getElementById('countdown-display');
+     const weatherchart = document.getElementById("weatherchart")
+     const countdownElement = document.getElementById('countdown-display');
      console.log(chartElement);
-     console.log(pieElement);
-     console.log(gaugeChart);
-    //  console.log(this.updateWeather);
-    //  console.log(chartElement);
+     console.log(this.updateWeather);
+     console.log(chartElement);
      
      this.pie = new Chart ('piechart', {
        type: 'doughnut',
@@ -149,7 +147,7 @@ export class DashboardComponent implements OnInit, OnDestroy, OnChanges{
  
      })
    };
-
+ 
      // Lifecycle hook to clean up the interval when the component is destroyed
      ngOnDestroy(): void {
        console.log('Called on destroy')
@@ -159,24 +157,24 @@ export class DashboardComponent implements OnInit, OnDestroy, OnChanges{
        console.log(name, position, weight, symbol);
      }
  
-  // /** Based on the screen size, switch from standard to one column per row */
-  // cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-  //   map(({ matches }) => {
-  //     if (matches) {
-  //       return [
-  //         { chartgraph: 'Launch Trend', cols: 1, rows: 1 },
-  //         { piegraph: 'Launch Company', cols: 1, rows: 1 },
-  //         { statustable: 'Launch Status', cols: 1, rows: 1 },
-  //         { newtable: 'News', cols: 1, rows: 1 }
-  //       ];
-  //     }
+  /** Based on the screen size, switch from standard to one column per row */
+  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(({ matches }) => {
+      if (matches) {
+        return [
+          { chartgraph: 'Launch Trend', cols: 1, rows: 1 },
+          { piegraph: 'Launch Company', cols: 1, rows: 1 },
+          { statustable: 'Launch Status', cols: 1, rows: 1 },
+          { newtable: 'News', cols: 1, rows: 1 }
+        ];
+      }
 
-  //     return [
-  //       { chartgraph: 'Launch Trend', cols: 2, rows: 1 },
-  //       { piegraph: 'Launch Company', cols: 1, rows: 1 },
-  //       { statustable: 'Launch Status', cols: 1, rows: 2 },
-  //       { newtable: 'News', cols: 1, rows: 1 }
-  //     ];
-  //   })
-  // );
+      return [
+        { chartgraph: 'Launch Trend', cols: 2, rows: 1 },
+        { piegraph: 'Launch Company', cols: 1, rows: 1 },
+        { statustable: 'Launch Status', cols: 1, rows: 2 },
+        { newtable: 'News', cols: 1, rows: 1 }
+      ];
+    })
+  );
 }

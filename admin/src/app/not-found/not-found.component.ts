@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-
-/** @type {import('tailwindcss').Config} */
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',

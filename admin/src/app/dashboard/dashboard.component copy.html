@@ -1,0 +1,111 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard Overview</h1>
+  <h2><time datetime="time">Time</time></h2>
+
+  <!-- Use *ngFor directive instead of @for -->
+<mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+    
+
+    <!-- Chart Graph Card -->
+    <mat-card *ngIf="card.chartgraph" class="dashboard-card">
+      <!-- <mat-card-header>
+        <mat-card-title>
+          {{ card.chartgraph }}
+        </mat-card-title>
+      </mat-card-header> -->
+      <mat-card-content class="dashboard-card-content">
+        <!-- <div>Chart Graph Content Here</div> -->
+        <div class="chartBox">
+          <canvas id="canvas">{{ chart }}</canvas>
+      </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Pie Graph Card -->
+    <mat-card *ngIf="card.piegraph" class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ card.piegraph }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div>Pie Graph Content Here</div>
+        <div class="piebox">
+          <canvas id="piechart">{{ pie }}</canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Status Table Card -->
+    <mat-card *ngIf="card.statustable" class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ card.statustable }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div>Status Table Content Here</div>
+        <!-- Table Build -->
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>STATUS</th>
+        <th>DATE</th>
+        <th>TITLE</th>
+        <th>COMPANY</th>
+        <th>LOCATION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pending</td>
+        <td>2024-10-15</td>
+        <td>Falcon 9 - Starlink 28</td>
+        <td>SpaceX</td>
+        <td>Cape Canaveral, Florida</td>
+      </tr>
+      <tr>
+        <td>Completed</td>
+        <td>2024-11-02</td>
+        <td>Ariane 5 - VA257</td>
+        <td>Arianespace</td>
+        <td>Guiana Space Centre, French Guiana</td>
+      </tr>
+      <tr>
+        <td>Canceled</td>
+        <td>2024-12-05</td>
+        <td>Atlas V - NROL-101</td>
+        <td>ULA</td>
+        <td>Vandenberg SFB, California</td>
+      </tr>
+      <tr>
+        <td>Reschedule</td>
+        <td>2024-12-10</td>
+        <td>Falcon 9 - Crew-8 Mission</td>
+        <td>SpaceX</td>
+        <td>Kennedy Space Center, Florida</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- News Table Card -->
+    <mat-card *ngIf="card.newtable" class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ card.newtable }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div>News Content Here</div>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+</div>

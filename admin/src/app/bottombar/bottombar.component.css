@@ -35,3 +35,7 @@ body {
 .bottom-nav a .icon { 
     margin-right: 8px; 
 } 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,111 +1,274 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard Overview</h1>
-  <h2><time datetime="time">Time</time></h2>
-
-  <!-- Use *ngFor directive instead of @for -->
-<mat-grid-list cols="2" rowHeight="350px">
-  <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-    
-
-    <!-- Chart Graph Card -->
-    <mat-card *ngIf="card.chartgraph" class="dashboard-card">
-      <!-- <mat-card-header>
-        <mat-card-title>
-          {{ card.chartgraph }}
-        </mat-card-title>
-      </mat-card-header> -->
-      <mat-card-content class="dashboard-card-content">
-        <!-- <div>Chart Graph Content Here</div> -->
-        <div class="chartBox">
-          <canvas id="canvas">{{ chart }}</canvas>
+<!-- This need to be a for loop refactor later -->
+<div class="flex justify-between space-x-4  mx-8 content-center items-stretch px-4 py-6">
+  <!-- First Top card for mini info -->
+  <div class="row card shadow-2xl rounded-b-lg py-6 px-4">
+    <div class="flex justify-between border-gray-200 border-b dark:border-blue-700 pb-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Launch Window</dt>
+        <dd class="leading-none text-3xl font-bold text-black-900 dark:text-gold">SPACE X</dd>
+      </dl>
+      <div>
+        <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+          </svg>
+          Time: 10:45
+        </span>
       </div>
-      </mat-card-content>
-    </mat-card>
+    </div>
+  
+    <div class="grid grid-cols-2 py-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Succcess </dt>
+        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">120</dd>
+      </dl>
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Fail</dt>
+        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-2</dd>
+      </dl>
+    </div>
+  </div>
 
-    <!-- Pie Graph Card -->
-    <mat-card *ngIf="card.piegraph" class="dashboard-card">
-      <mat-card-header>
-        <mat-card-title>
-          {{ card.piegraph }}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
-        <div>Pie Graph Content Here</div>
-        <div class="piebox">
-          <canvas id="piechart">{{ pie }}</canvas>
+  <!-- Second Top card for mini info -->
+  <div class="row card shadow-2xl rounded-b-lg py-6 px-4">
+    <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Launch Window</dt>
+        <dd class="leading-none text-3xl font-bold text-blue-900 dark:text-blue">Blue Origin</dd>
+      </dl>
+      <div>
+        <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+          </svg>
+          Time: 10:45
+        </span>
+      </div>
+    </div>
+  
+    <div class="grid grid-cols-2 py-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Succcess </dt>
+        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">120</dd>
+      </dl>
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Fail</dt>
+        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-2</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Third Top card for mini info -->
+  <div class="row card shadow-2xl rounded-b-lg py-6 px-4">
+    <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Launch Window</dt>
+        <dd class="leading-none text-3xl font-bold text-yellow-500 dark:text-gold">Firefly Aerospace</dd>
+      </dl>
+      <div>
+        <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+          </svg>
+          Time: 10:45
+        </span>
+      </div>
+    </div>
+  
+    <div class="grid grid-cols-2 py-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Succcess </dt>
+        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">120</dd>
+      </dl>
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Fail</dt>
+        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-2</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Fourth Top card for mini info -->
+  <div class="row card shadow-2xl rounded-b-lg py-6 px-4">
+    <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Launch Window</dt>
+        <dd class="leading-none text-3xl font-bold text-sky-500 dark:text-blue">Arianespace</dd>
+      </dl>
+      <div>
+        <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+          </svg>
+          Time: 10:45
+        </span>
+      </div>
+    </div>
+  
+    <div class="grid grid-cols-2 py-3">
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Succcess </dt>
+        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">120</dd>
+      </dl>
+      <dl>
+        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Fail</dt>
+        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-2</dd>
+      </dl>
+    </div>
+  </div>
+
+</div>
+
+<!-- graph box  -->
+<div class="flex flex-row space-x-4  mx-8 content-center items-stretch p-4">
+  <!-- Chart graph box -->
+    <div class="card basis-1/2 flex-1 w-64 p-8 rounded-b-lg shadow-md ">
+      <div class="row ">
+        <div class="col content-center" >
+          <div class="flex-auto self-stretch ">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+              Status
+            </span>
+            <mat-grid-list cols="2" >
+              <div class="chartBox bg-origin-border">
+                <canvas id="canvas">{{ chart }}</canvas>
+              </div>
+            </mat-grid-list>
+          </div>
+        </div>    
+      </div>
+    </div>
+    <!-- Pie graph Will look like a card, but with square corners -->
+  <div class="card flex-1 p-8 rounded-b-lg shadow-md">
+    <div class="row">
+      <div class="col  ">
+        <div class="flex-auto mx-auto">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+            Status
+          </span>
+          <mat-grid-list cols="2 " >
+            <div class="piebox">
+              <canvas id="piechart">{{ pie }}</canvas>
+            </div>
+          </mat-grid-list>
         </div>
-      </mat-card-content>
-    </mat-card>
+      </div>    
+    </div>
+  </div>
+</div>  
 
-    <!-- Status Table Card -->
-    <mat-card *ngIf="card.statustable" class="dashboard-card">
-      <mat-card-header>
-        <mat-card-title>
-          {{ card.statustable }}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
-        <div>Status Table Content Here</div>
-        <!-- Table Build -->
-<div class="table-container">
-  <table class="table">
+<!-- Table of the launch  -->
+ <!-- This need to refactor to get the launch data and only show the 5 ascn launch -->
+<div class="table-container ">
+  <table class="table w-full border-separate  border-green-800 bg-gray-50 rounded-lg text-left">
     <thead>
       <tr>
-        <th>STATUS</th>
-        <th>DATE</th>
-        <th>TITLE</th>
-        <th>COMPANY</th>
-        <th>LOCATION</th>
+        <th class="border-green-600 px-6 py-3 font-semibold">STATUS</th>
+        <th class="border-green-600 px-6 py-3 font-semibold">DATE</th>
+        <th class="border-green-600 px-6 py-3 font-semibold">TITLE</th>
+        <th class="border-green-600 px-6 py-3 font-semibold">COMPANY</th>
+        <th class="border-green-600 px-6 py-3 font-semibold">LOCATION</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Pending</td>
-        <td>2024-10-15</td>
-        <td>Falcon 9 - Starlink 28</td>
-        <td>SpaceX</td>
-        <td>Cape Canaveral, Florida</td>
+        <td class=" border-green-600 px-6 py-4">
+          <div class=" flex items-center">
+            <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
+          </div>
+        </td>
+        
+        <td class=" border-green-600 px-6 py-3">2024-10-15</td>
+        <td class=" border-green-600 px-6 py-3">Falcon 9 - Starlink 28</td>
+        <td class=" border-green-600 px-6 py-3">SpaceX</td>
+        <td class=" border-green-600 px-6 py-3">Cape Canaveral, Florida</td>
       </tr>
       <tr>
-        <td>Completed</td>
-        <td>2024-11-02</td>
-        <td>Ariane 5 - VA257</td>
-        <td>Arianespace</td>
-        <td>Guiana Space Centre, French Guiana</td>
+        <td class=" border-green-600 px-6 py-3">Completed</td>
+        <td class=" border-green-600 px-6 py-3">2024-11-02</td>
+        <td class=" border-green-600 px-6 py-3">Ariane 5 - VA257</td>
+        <td class=" border-green-600 px-6 py-3">Arianespace</td>
+        <td class=" border-green-600 px-6 py-3">Guiana Space Centre, French Guiana</td>
       </tr>
       <tr>
-        <td>Canceled</td>
-        <td>2024-12-05</td>
-        <td>Atlas V - NROL-101</td>
-        <td>ULA</td>
-        <td>Vandenberg SFB, California</td>
+        <td class=" border-green-600 px-6 py-3">Canceled</td>
+        <td class=" border-green-600 px-6 py-3">2024-12-05</td>
+        <td class=" border-green-600 px-6 py-3">Atlas V - NROL-101</td>
+        <td class=" border-green-600 px-6 py-3">ULA</td>
+        <td class=" border-green-600 px-6 py-3">Vandenberg SFB, California</td>
       </tr>
       <tr>
-        <td>Reschedule</td>
-        <td>2024-12-10</td>
-        <td>Falcon 9 - Crew-8 Mission</td>
-        <td>SpaceX</td>
-        <td>Kennedy Space Center, Florida</td>
+        <td class=" border-green-600 px-6 py-3">Reschedule</td>
+        <td class=" border-green-600 px-6 py-3">2024-12-10</td>
+        <td class=" border-green-600 px-6 py-3">Falcon 9 - Crew-8 Mission</td>
+        <td class=" border-green-600 px-6 py-3">SpaceX</td>
+        <td class=" border-green-600 px-6 py-3">Kennedy Space Center, Florida</td>
       </tr>
     </tbody>
   </table>
 </div>
-      </mat-card-content>
-    </mat-card>
+<!-- News tab  -->
+<!-- This need to be refactor to only show show recent new store in an array  -->
+<div class="">
+  <!-- News title  -->
+    <div class="flex flex-row space-x-4  mx-8 content-center items-stretch grid grid-cols-4 gap-4 px-4 py-6">
+      <h1 class="text-4xl font-extrabold">News</h1>
+    </div>
+    <!-- News will be display in a card format -->
+  <div class=" flex flex-row space-x-4  mx-8 content-center items-stretch grid grid-cols-4 gap-4 px-4 py-6">
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>    
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>      
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
+    <div class="">
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Boeing calls off its first astronaut launch because of valve issue on rocket</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Boeing called off its first astronaut launch because of a valve problem on the rocket Monday night.</p>
+      </a>
+    </div>  
 
-    <!-- News Table Card -->
-    <mat-card *ngIf="card.newtable" class="dashboard-card">
-      <mat-card-header>
-        <mat-card-title>
-          {{ card.newtable }}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
-        <div>News Content Here</div>
-      </mat-card-content>
-    </mat-card>
-
-  </mat-grid-tile>
-</mat-grid-list>
-
+  </div>
 </div>

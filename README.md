@@ -1,7 +1,7 @@
 ### Launch Tracker Page with PEAN Stack Backend
-### Frontend Page
+### Frontend Page (Launch Dashboard)
 
-**Dashboard**
+**Dashboard (Angular => API)**
 <img src="https://github.com/idrisskacou/GameWord/blob/0ea4d50b2dc3153327627a8431604e2a131aff43/public/images/Screenshot%202024-11-04%20at%204.57.19%E2%80%AFPM.png">
 <img src="https://github.com/idrisskacou/GameWord/blob/0ea4d50b2dc3153327627a8431604e2a131aff43/public/images/Screenshot%202024-11-04%20at%204.57.32%E2%80%AFPM.png">
 
@@ -9,6 +9,7 @@
 <img src="https://github.com/idrisskacou/GameWord/blob/0ea4d50b2dc3153327627a8431604e2a131aff43/public/images/Screenshot%202024-11-04%20at%205.07.11%E2%80%AFPM.png">
 
 ### Backend Page (Launch Details)
+**Backend (Express + Node => Database)**
 <img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/seach-on-launch-tracker.png">
 
 

@@ -11,6 +11,9 @@ import { LoggerService } from '../../logger.service';
 import { error } from 'console';
 import { getLlama, Llama } from 'node-llama-cpp';
 import { AiService } from '../ai.service';
+// import * as THREE from 'three'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import  Stats  from 'three/examples/jsm/libs/stats.module.js';
 
 // interface Message {
 //   author: 'user' | 'bot';
@@ -81,4 +84,7 @@ export class AiComponent implements OnInit, OnChanges, OnDestroy {
     console.log("AI page load...");
   }
   
+  
+  
 }
+

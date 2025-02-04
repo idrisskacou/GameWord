@@ -154,3 +154,86 @@ import { LaunchService } from './launch.service';
 ```
 <img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
 
+```
+# version: '3.7'
+services:
+  # Frontend : Angular Setup 
+  angular:
+    container_name: angular-frontend
+    build:
+      context: ./admin  # Points to the Angular project directory
+      dockerfile: Dockerfile  # Explicitly specifies the Dockerfile
+    restart: always
+    ports:
+      - "4200:4200"  #Angular (Nginx) to port 4200
+    networks:
+      - frontend
+
+  # Backend: ExpressJs Setup 
+  backendexpress:
+    container_name: express-backend
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+      - '3002:3002' #API for the frontend server listening on PORT: 3002
+    networks:
+      - frontend
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/launch
+    links:
+      - mongo
+
+  # Database: MongoDB 
+  mongo:
+    container_name: door-mongo-db
+    image: 'mongo:7'
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    # environment:
+    # - MONGO_INITDB_ROOT_USERNAME={{}} # standard password
+    # - MONGO_INITDB_ROOT_PASSWORD={{}} # standard password
+    ports:
+      - '27017:27017'
+    networks:
+      - frontend
+      - backend
+
+  # Monitor: Grafana
+  grafana:
+    container_name: monitor-grafana
+    image: 'grafana/grafana'
+    restart: always
+    ports:
+      - "3001:3001"  # Expose Grafana on host port 3001
+    networks:
+      - frontend
+    volumes:
+      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini  # Load custom config
+      - grafana-data:/var/lib/grafana  # Persist Grafana data
+
+  # Message Queue: RabbitMQ
+  rabbitmq:
+    container_name: rabbitmq
+    image: "rabbitmq:3-management"
+    restart: always
+    ports:
+      - "5672:5672"   # RabbitMQ messaging port
+      - "15672:15672" # Management UI
+    networks:
+      - backend
+
+# Create a network to attach to external network containers
+networks:
+  frontend:
+  backend:
+ 
+ # Define the named volume explicitly
+# Volumes
+volumes:
+  mongodata:
+    driver: local
+  grafana-data:
+    driver: local  # Persistent storage for Grafana
+```

@@ -23,7 +23,7 @@ services:
     networks:
       - frontend
     environment:
-      MONGO_URI: mongodb://mongodb:27017/door
+      MONGO_URI: mongodb://mongodb:27017/launch
     links:
       - mongo
 
@@ -34,9 +34,9 @@ services:
     restart: always
     volumes:
       - mongodata:/data/db
-    environment:
-    - MONGO_INITDB_ROOT_USERNAME=admin
-    - MONGO_INITDB_ROOT_PASSWORD=secret
+    # environment:
+    # - MONGO_INITDB_ROOT_USERNAME={{}} # standard password
+    # - MONGO_INITDB_ROOT_PASSWORD={{}} # standard password
     ports:
       - '27017:27017'
     networks:

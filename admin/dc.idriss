@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  angular-ssr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: angular-ssr
+    ports:
+      - "80:80"       # Nginx on port 80 for static files
+      - "4000:4000"   # Node.js SSR on port 4000
+    volumes:
+      - .:/app  # Mount the local app directory for easier development (optional)
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+    

@@ -154,7 +154,9 @@ import { LaunchService } from './launch.service';
 ```
 <img src="https://raw.githubusercontent.com/idrisskacou/GameWord/main/public/images/contact-page-inage.png">
 
-```
+
+#### Docker-Compose.yml
+```console
 # version: '3.7'
 services:
   # Frontend : Angular Setup 

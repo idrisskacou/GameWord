@@ -30,13 +30,10 @@ services:
   # Database: MongoDB 
   mongo:
     container_name: door-mongo-db
-    image: 'mongo:7'
+    image: 'mongo:8.0-rc'
     restart: always
     volumes:
       - mongodata:/data/db
-    # environment:
-    # - MONGO_INITDB_ROOT_USERNAME={{}} # standard password
-    # - MONGO_INITDB_ROOT_PASSWORD={{}} # standard password
     ports:
       - '27017:27017'
     networks:
@@ -45,16 +42,61 @@ services:
 
   # Monitor: Grafana
   grafana:
-    container_name: monitor-grafana
-    image: 'grafana/grafana'
+    container_name: grafana
+    image: 'grafana/grafana:latest'
     restart: always
     ports:
       - "3001:3001"  # Expose Grafana on host port 3001
     networks:
       - frontend
+      - backend
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
     volumes:
       - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini  # Load custom config
       - grafana-data:/var/lib/grafana  # Persist Grafana data
+      - ./grafana/provisioning:/etc/grafana/provisioning  # Provisioning directory
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        mkdir -p /etc/grafana/provisioning/dashboards
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          url: http://prometheus:9090
+          isDefault: true
+          editable: true
+        - name: Loki
+          type: loki
+          access: proxy
+          url: http://loki:3100
+          isDefault: false
+          editable: false
+        EOF
+
+        cat <<EOF > /etc/grafana/provisioning/dashboards/dashboards.yaml
+        apiVersion: 1
+        providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards
+        EOF
+
+        /run.sh
+      
 
   # Message Queue: RabbitMQ
   rabbitmq:
@@ -67,25 +109,73 @@ services:
     networks:
       - backend
 
-  # Notification Worker (Consumes messages)
-  # worker:
-  #   container_name: worker-service
-  #   build: ./worker
-  #   restart: always
-  #   depends_on:
-  #     - rabbitmq
-  #   networks:
-  #     - backend
+  loki:
+    image: grafana/loki:latest
+    container_name: grafana-loki
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+      - ./loki_data:/loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    networks:
+      - backend  #depending on your needs
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.2
+    container_name: cadvisor
+    restart: always
+    ports:
+      - "8080:8080"  # cAdvisor UI
+    networks:
+      - backend
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      # - ../myapp/logs:/var/log/nginx_myapp # Here we tell Promtail where the logs are
+      # In case more app logs are needed
+      # - ../app_name/logs:/var/log/nginx_app_name
+      - /var/log:/var/log
+      - ./promtail-config.yaml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    restart: unless-stopped
+    networks:
+      - backend  #depending on your needs
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - backend  #depending on your needs
+      - frontend
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      retries: 3
 
 # Create a network to attach to external network containers
 networks:
   frontend:
   backend:
  
- # Define the named volume explicitly
+# Define the named volume explicitly
 # Volumes
 volumes:
   mongodata:
     driver: local
   grafana-data:
-    driver: local  # Persistent storage for Grafana
+    driver: local
+  prometheus_data:
+    driver: local

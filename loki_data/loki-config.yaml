@@ -4,49 +4,85 @@ server:
   http_listen_port: 3100
   grpc_listen_port: 9096
 
-ingester:
-  lifecycler:
-    address: 0.0.0.0
-    final_sleep: 0s   # ✅ Ensures Loki does not delay shutdown
-    ring:
-      kvstore:
-        store: inmemory
-      replication_factor: 1
-  chunk_idle_period: 5m       # Any chunk not receiving new logs in this time is flushed
-  chunk_retain_period: 30s     # Any chunk that has been flushed but not read in this time is removed
+common:
+  instance_addr: 0.0.0.0
+  path_prefix: /tmp/loki
+  storage:
+    filesystem:
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+query_range:
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
 
 schema_config:
   configs:
-    - from: 2024-01-01
+    - from: 2020-10-24
       store: tsdb
       object_store: filesystem
-      schema: v13
+      schema: v12
       index:
         prefix: index_
         period: 24h
 
-storage_config:
-  boltdb_shipper:
-    active_index_directory: /loki/index
-    cache_location: /loki/index_cache
-    # shared_store: filesystem  # ✅ Required for boltdb-shipper
 
-  filesystem:
-    directory: /loki/chunks
+# auth_enabled: false
 
-limits_config:
-  reject_old_samples: true
-  reject_old_samples_max_age: 24h  # Reject logs older than 24 hours
-  allow_structured_metadata: false 
+# server:
+#   http_listen_address: 0.0.0.0
+#   http_listen_port: 3100
 
-table_manager:
-  retention_deletes_enabled: true
-  retention_period: 24h  # Retain logs for 24 hours
+# common:
+#   path_prefix: /tmp/loki  # ✅ Required for TSDB indexing to function correctly
 
-compactor:
-  working_directory: /loki/compactor
-  compaction_interval: 10m  # ✅ Required to trigger compaction
+# ingester:
+#   lifecycler:
+#     address: 0.0.0.0
+#     ring:
+#       kvstore:
+#         store: inmemory
+#       replication_factor: 1
+#   chunk_idle_period: 5m
+#   chunk_retain_period: 30s
 
+# schema_config:
+#   configs:
+#     - from: 2025-02-20 
+#       store: tsdb 
+#       object_store: filesystem 
+#       schema: v13 
+#       index:
+#         prefix: index_
+#         period: 24h
+
+# storage_config:
+#   tsdb_shipper:
+#     active_index_directory: /loki/tsdb-index  # Ensure this path exists
+#     cache_location: /loki/tsdb-cache  # Ensure this path exists
+#     shared_store: filesystem
+
+#   filesystem:
+#     directory: /loki/chunks  # Ensure this path exists
+
+#   filesystem:
+#     directory: /loki/chunks  # ✅ Required for object storage
+
+# limits_config:
+#   reject_old_samples: true
+#   reject_old_samples_max_age: 24h
+#   allow_structured_metadata: false  # ✅ Disable if not using structured metadata
+
+# compactor:
+#   working_directory: /loki/compactor
+#   compaction_interval: 10m  # ✅ Compaction is necessary for TSDB indexing
 
 
 # auth_enabled: false

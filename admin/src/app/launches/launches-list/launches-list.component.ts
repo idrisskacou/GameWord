@@ -19,7 +19,7 @@ export class LaunchesListComponent implements OnInit{
   ngOnInit(): void {
     this.goToLaunchDetails;
     this.launchesService.getLaunches().subscribe(data => {
-      // Ensure that 'data' is an object and convert it into an array
+      //'data' is an object and convert it into an array
       if (data && typeof data === 'object') {
         const launchesArray = Object.values(data); // Convert object to array of values
   

@@ -1,33 +1,51 @@
+# This docker-composer build the FullStack 
+# Frontend: Angular 
+# Backend: ExpressJS and NodeJS 
+# MessageQ: RabbitMQ
+# Database: Postgres & MongoDB
+# Monitor real-time performance: Grafana( Loki & Prometheus, Cadvisor)
+# Search engine : Elasticsearch
 # version: '3.7'
 services:
   # Frontend : Angular Setup 
   angular:
     container_name: angular-frontend
     build:
-      context: ./admin  # Points to the Angular project directory
+      context: ./admin  # Angular project directory
       dockerfile: Dockerfile  # Explicitly specifies the Dockerfile
-    restart: always
+    restart: always # Always running
+    environment:
+      - API_URL=http://express-backend:3002/api # Api URL path 
     ports:
       - "4200:4200"  #Angular (Nginx) to port 4200
     networks:
-      - frontend
+      - frontend # Networks mapping 
 
   # Backend: ExpressJs Setup 
   backendexpress:
-    container_name: express-backend
-    restart: always
-    build: .
+    container_name: express-backend # Name of Backend Container Name 
+    restart: always # Restart is always in case it fail 
+    build: . # Build the dockerfile 
     ports:
       - '3000:3000'
       - '3002:3002' #API for the frontend server listening on PORT: 3002
-    networks:
-      - frontend
+    networks: 
+      - backend # Backend network service 
+      - frontend # Frontend network serive
+    env_file: # Environement variable 
+      - .env
     environment:
       MONGO_URI: mongodb://mongodb:27017/launch
-    links:
-      - mongo
+      DB_HOST: ${POSTGRES_HOST} # DB host name 
+      DB_USER: ${POSTGRES_USER} # DB user name 
+      DB_PASSWORD: ${POSTGRES_PASSWORD} # DB password
+      DB_NAME: ${POSTGRES_DATABASE} # DB name 
+    depends_on: # Service depend on
+      - mongo # DB
+      - postgres # DB
 
-  # Database: MongoDB 
+
+  # Database: MongoDB 1
   mongo:
     container_name: door-mongo-db
     image: 'mongo:8.0-rc'
@@ -39,6 +57,26 @@ services:
     networks:
       - frontend
       - backend
+
+  # Database: Postgres
+  postgres:
+    container_name: door-postgres-db
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres/launch_database.sql:/docker-entrypoint-initdb.d/launch_database.sql
+      - ./postgres/account.sql:/docker-entrypoint-initdb.d/account.sql
+      - ./postgres/weather_database.sql:/docker-entrypoint-initdb.d/weather_database.sql
+    networks:
+      - backend
+    ports:
+      - '5432:5432'
 
   # Monitor: Grafana
   grafana:
@@ -73,13 +111,13 @@ services:
           type: prometheus
           access: proxy
           url: http://prometheus:9090
-          isDefault: true
+          isDefault: false
           editable: true
         - name: Loki
           type: loki
           access: proxy
           url: http://loki:3100
-          isDefault: false
+          isDefault: true
           editable: false
         EOF
 
@@ -96,21 +134,7 @@ services:
             path: /etc/grafana/provisioning/dashboards
         EOF
         
-        cat <<EOF > /etc/grafana/provisioning/dashboards/test.yaml
-        apiVersion: 1
-        providers:
-        - name: 'test'
-          orgId: 1
-          folder: ''
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /etc/grafana/provisioning/dashboards
-        EOF
-
         /run.sh
-      
 
   # Message Queue: RabbitMQ
   rabbitmq:
@@ -185,10 +209,42 @@ services:
       interval: 30s
       retries: 3
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+
+  # logstash:
+  #   image: docker.elastic.co/logstash/logstash:7.10.0
+  #   volumes:
+  #     - ./logging/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.10.0
+  #   ports:
+  #     - "5601:5601"
+
+  kong:
+    image: kong
+    ports:
+      - "8000:8000"  # Public API
+      - "8001:8001"  # Admin API
+    environment:
+      - KONG_DATABASE=off
+      - KONG_PROXY_LISTEN=0.0.0.0:8000
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+
+
 # Create a network to attach to external network containers
 networks:
   frontend:
+    driver: bridge
   backend:
+    driver: bridge
  
 # Define the named volume explicitly
 # Volumes
@@ -199,3 +255,7 @@ volumes:
     driver: local
   prometheus_data:
     driver: local
+  elasticsearch-data:
+  postgresdb:
+    driver: local
+  

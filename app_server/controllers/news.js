@@ -17,4 +17,3 @@ const news = async (req, res) => {
 module.exports = {
   news,
 };
-

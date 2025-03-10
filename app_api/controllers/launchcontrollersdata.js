@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express ();
 const datajson = require("../data/trips.json"); // JSON data hard code 
-const db = require("../routes/index"); 
+// const db = require("../routes/index"); 
 
 const APIPORT = 3002;
 const listdata = async (req, res) => {

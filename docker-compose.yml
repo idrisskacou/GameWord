@@ -172,12 +172,22 @@ services:
     ports:
       - "8080:8080"  # cAdvisor UI
     networks:
+    
       - backend
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/sys:/sys:ro"
-      - "/:/rootfs:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
+      - /:/rootfs:ro # Access to host root filesystem (read-only)
+      - /var/run:/var/run:rw # Access to runtime files including Docker's socket
+      - /sys:/sys:ro # Access system information (kernel stats)
+      - /var/lib/docker/:/var/lib/docker:ro # Access to Docker's storage layer
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro  # Access to cgroups for CPU, memory, blkio usage tracking
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Docker API socket to get container metadata
+
+
+  redis:
+    image: redis:8.0-M04-alpine
+    container_name: redis
+    ports:
+    - 6379:6379
 
   promtail:
     image: grafana/promtail:latest
